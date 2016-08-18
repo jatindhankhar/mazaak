@@ -1,5 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.Javajokes;
+import com.udacity.gradle.JokeActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -45,9 +49,23 @@ public class MainActivity extends ActionBarActivity {
 
     public void tellJoke(View view){
 
+
+        //Thanks http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
+        final JokeEndPointsAsyncTask asyncTask = (JokeEndPointsAsyncTask) new JokeEndPointsAsyncTask(new JokeEndPointsAsyncTask.AsyncResponse() {
+            @Override
+            public void processResponse(String output) {
+                Log.d("Yolopad","Response from server is " + output);
+            }
+        }).execute();
+
         String joke= Javajokes.getJoke();
-        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, joke, Toast.LENGTH_LONG).show();
+        //Intent intent = new Intent(this, JokeActivity.class);
+        //intent.putExtra(JokeActivity.JOKE_KEY,joke);
+        //startActivity(intent);
+
     }
+
 
 
 }
