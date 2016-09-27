@@ -36,7 +36,7 @@ android {
 
     sourceSets {
         free {
-            manifest.srcFile 'src/free/AndroidManifest.xml'
+            //manifest.srcFile 'src/free/AndroidManifest.xml'
         }
     }
 }
