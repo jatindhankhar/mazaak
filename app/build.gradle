@@ -22,12 +22,14 @@ android {
 
     productFlavors {
         paid {
-            applicationId 'com.udacity.gradle.builditbigger.paid'
+            //applicationId 'com.udacity.gradle.builditbigger.paid'
+            applicationIdSuffix '.paid'
             resValue "string", "app_name", "Joke Paid"
         }
 
         free {
-            applicationId 'com.udacity.gradle.builditbigger.free'
+            // applicationId 'com.udacity.gradle.builditbigger.free'
+            applicationIdSuffix '.free'
             resValue "string", "app_name", "Joke Free"
         }
     }
