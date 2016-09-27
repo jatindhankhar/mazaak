@@ -28,7 +28,7 @@ android {
 
         free {
             applicationId 'com.udacity.gradle.builditbigger.free'
-            resValue "string", "app_name", "Joke Paid"
+            resValue "string", "app_name", "Joke Free"
         }
     }
 
