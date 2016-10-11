@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.Javajokes;
@@ -49,20 +50,42 @@ public class MainActivity extends ActionBarActivity {
 
     public void tellJoke(){
 
-
+         final String[] result = {""};//Holds result
         //Thanks http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
+
         final JokeEndPointsAsyncTask asyncTask = (JokeEndPointsAsyncTask) new JokeEndPointsAsyncTask(new JokeEndPointsAsyncTask.AsyncResponse() {
+
             @Override
             public void processResponse(String output) {
                 Log.d("Yolopad","Response from server is " + output);
+                ((ProgressBar)findViewById(R.id.progress_bar)).setVisibility(View.VISIBLE);
+                // Not a good way to check for failure and Success
+                if(output.contains("failed to connect"))
+                {
+
+                }
+                else
+                {
+                    ((ProgressBar)findViewById(R.id.progress_bar)).setVisibility(View.GONE);
+                    result[0] = output;
+                }
             }
+
+
         }).execute();
 
         String joke= Javajokes.getJoke();
-        Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra(JokeActivity.JOKE_KEY,joke);
-        startActivity(intent);
-
+        joke = result[0];
+        if(! joke.isEmpty()){
+            Intent intent = new Intent(this, JokeActivity.class);
+            intent.putExtra(JokeActivity.JOKE_KEY, joke);
+            startActivity(intent);
+        }
+        else
+        {
+            ((ProgressBar)findViewById(R.id.progress_bar)).setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "Failed to get data", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
