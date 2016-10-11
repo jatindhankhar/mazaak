@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view){
+    public void tellJoke(){
 
 
         //Thanks http://stackoverflow.com/questions/12575068/how-to-get-the-result-of-onpostexecute-to-main-activity-because-asynctask-is-a
@@ -59,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
         }).execute();
 
         String joke= Javajokes.getJoke();
-        Toast.makeText(this, joke, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, JokeActivity.class);
         intent.putExtra(JokeActivity.JOKE_KEY,joke);
         startActivity(intent);
