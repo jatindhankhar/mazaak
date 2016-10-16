@@ -17,6 +17,8 @@ import com.udacity.gradle.JokeActivity;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static final String YOLOPAD = "Yolopad";
+    private static final String RESPONSE_FROM_SERVER_IS = "Response from server is ";
     String result = "";//Holds result
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,8 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void processResponse(String output) {
-                Log.d("Yolopad","Response from server is " + output);
-                ((ProgressBar)findViewById(R.id.progress_bar)).setVisibility(View.VISIBLE);
+                Log.d(YOLOPAD, RESPONSE_FROM_SERVER_IS + output);
+                findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
                 result = output;
             //    Log.d("Yolopad","Output is " + result);
 
@@ -77,7 +79,7 @@ public class MainActivity extends ActionBarActivity {
         else
         {
         //    Log.d("Yolopad","Joke is " +result);
-            ((ProgressBar)findViewById(R.id.progress_bar)).setVisibility(View.GONE);
+            findViewById(R.id.progress_bar).setVisibility(View.GONE);
             Toast.makeText(MainActivity.this, "Failed to get data", Toast.LENGTH_SHORT).show();
         }
     }
