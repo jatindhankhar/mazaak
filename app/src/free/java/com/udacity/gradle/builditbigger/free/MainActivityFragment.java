@@ -72,6 +72,7 @@ public class MainActivityFragment extends Fragment {
             public void onClick(View view) {
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
+                    ((ProgressBar) root.findViewById(R.id.progress_bar)).setVisibility(View.GONE);
                 } else {
                     ((ProgressBar) root.findViewById(R.id.progress_bar)).setVisibility(View.VISIBLE);
                     ((MainActivity)getActivity()).tellJoke();

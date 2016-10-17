@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void processResponse(String output) {
                 Log.d(YOLOPAD, RESPONSE_FROM_SERVER_IS + output);
-                findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
+
                 result = output;
             //    Log.d("Yolopad","Output is " + result);
 
@@ -72,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
 
       //  Log.d("Yolopad","Joke is " +result);
         if(! result.isEmpty()){
+            findViewById(R.id.progress_bar).setVisibility(View.VISIBLE);
             Intent intent = new Intent(this, JokeActivity.class);
             intent.putExtra(JokeActivity.JOKE_KEY, result);
             startActivity(intent);
