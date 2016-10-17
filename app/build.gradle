@@ -39,6 +39,7 @@ android {
             //manifest.srcFile 'src/free/AndroidManifest.xml'
             java.srcDirs = ['src/free/java']
         }
+        paid { java.srcDirs = ['src/paid/java', 'src/paid/java/'] }
     }
 }
 
